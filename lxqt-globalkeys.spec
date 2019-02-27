@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x42C9C8D3AF5EA5E3 (agaida@siduction.org)
 #
 Name     : lxqt-globalkeys
-Version  : 0.14.0
-Release  : 1
-URL      : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.0/lxqt-globalkeys-0.14.0.tar.xz
-Source0  : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.0/lxqt-globalkeys-0.14.0.tar.xz
-Source99 : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.0/lxqt-globalkeys-0.14.0.tar.xz.asc
+Version  : 0.14.1
+Release  : 2
+URL      : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.1/lxqt-globalkeys-0.14.1.tar.xz
+Source0  : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.1/lxqt-globalkeys-0.14.1.tar.xz
+Source99 : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.1/lxqt-globalkeys-0.14.1.tar.xz.asc
 Summary  : LXQt daemon and library for global keyboard shortcuts registration.
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -56,6 +56,7 @@ Requires: lxqt-globalkeys-lib = %{version}-%{release}
 Requires: lxqt-globalkeys-bin = %{version}-%{release}
 Requires: lxqt-globalkeys-data = %{version}-%{release}
 Provides: lxqt-globalkeys-devel = %{version}-%{release}
+Requires: lxqt-globalkeys = %{version}-%{release}
 
 %description dev
 dev components for the lxqt-globalkeys package.
@@ -80,14 +81,14 @@ license components for the lxqt-globalkeys package.
 
 
 %prep
-%setup -q -n lxqt-globalkeys-0.14.0
+%setup -q -n lxqt-globalkeys-0.14.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549314275
+export SOURCE_DATE_EPOCH=1551233075
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -95,7 +96,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549314275
+export SOURCE_DATE_EPOCH=1551233075
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lxqt-globalkeys
 cp LICENSE %{buildroot}/usr/share/package-licenses/lxqt-globalkeys/LICENSE
@@ -170,9 +171,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/liblxqt-globalkeys-ui.so.0
-/usr/lib64/liblxqt-globalkeys-ui.so.0.14.0
+/usr/lib64/liblxqt-globalkeys-ui.so.0.14.1
 /usr/lib64/liblxqt-globalkeys.so.0
-/usr/lib64/liblxqt-globalkeys.so.0.14.0
+/usr/lib64/liblxqt-globalkeys.so.0.14.1
 
 %files license
 %defattr(0644,root,root,0755)
