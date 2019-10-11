@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x42C9C8D3AF5EA5E3 (agaida@siduction.org)
 #
 Name     : lxqt-globalkeys
-Version  : 0.14.1
-Release  : 2
-URL      : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.1/lxqt-globalkeys-0.14.1.tar.xz
-Source0  : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.1/lxqt-globalkeys-0.14.1.tar.xz
-Source99 : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.1/lxqt-globalkeys-0.14.1.tar.xz.asc
+Version  : 0.14.2
+Release  : 3
+URL      : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.2/lxqt-globalkeys-0.14.2.tar.xz
+Source0  : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.2/lxqt-globalkeys-0.14.2.tar.xz
+Source1 : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.2/lxqt-globalkeys-0.14.2.tar.xz.asc
 Summary  : LXQt daemon and library for global keyboard shortcuts registration.
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -57,6 +57,7 @@ Requires: lxqt-globalkeys-bin = %{version}-%{release}
 Requires: lxqt-globalkeys-data = %{version}-%{release}
 Provides: lxqt-globalkeys-devel = %{version}-%{release}
 Requires: lxqt-globalkeys = %{version}-%{release}
+Requires: lxqt-globalkeys = %{version}-%{release}
 
 %description dev
 dev components for the lxqt-globalkeys package.
@@ -81,22 +82,31 @@ license components for the lxqt-globalkeys package.
 
 
 %prep
-%setup -q -n lxqt-globalkeys-0.14.1
+%setup -q -n lxqt-globalkeys-0.14.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1551233075
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1570776530
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1551233075
+export SOURCE_DATE_EPOCH=1570776530
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lxqt-globalkeys
 cp LICENSE %{buildroot}/usr/share/package-licenses/lxqt-globalkeys/LICENSE
@@ -116,13 +126,16 @@ popd
 %defattr(-,root,root,-)
 /usr/share/applications/lxqt-config-globalkeyshortcuts.desktop
 /usr/share/cmake/*
+/usr/share/lxqt/globalkeyshortcuts.conf
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_ar.qm
+/usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_ast.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_ca.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_cs.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_cy.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_da.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_de.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_el.qm
+/usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_en_GB.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_eo.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_es.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_es_VE.qm
@@ -144,6 +157,7 @@ popd
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_pt_BR.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_ro_RO.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_ru.qm
+/usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_sk_SK.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_sl.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_th_TH.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_tr.qm
