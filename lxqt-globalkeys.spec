@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x42C9C8D3AF5EA5E3 (agaida@siduction.org)
 #
 Name     : lxqt-globalkeys
-Version  : 0.14.2
-Release  : 3
-URL      : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.2/lxqt-globalkeys-0.14.2.tar.xz
-Source0  : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.2/lxqt-globalkeys-0.14.2.tar.xz
-Source1 : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.2/lxqt-globalkeys-0.14.2.tar.xz.asc
+Version  : 0.14.3
+Release  : 4
+URL      : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.3/lxqt-globalkeys-0.14.3.tar.xz
+Source0  : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.3/lxqt-globalkeys-0.14.3.tar.xz
+Source1 : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.3/lxqt-globalkeys-0.14.3.tar.xz.asc
 Summary  : LXQt daemon and library for global keyboard shortcuts registration.
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -82,14 +82,14 @@ license components for the lxqt-globalkeys package.
 
 
 %prep
-%setup -q -n lxqt-globalkeys-0.14.2
+%setup -q -n lxqt-globalkeys-0.14.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570776530
+export SOURCE_DATE_EPOCH=1571283463
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -106,10 +106,10 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1570776530
+export SOURCE_DATE_EPOCH=1571283463
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lxqt-globalkeys
-cp LICENSE %{buildroot}/usr/share/package-licenses/lxqt-globalkeys/LICENSE
+cp %{_builddir}/lxqt-globalkeys-0.14.3/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-globalkeys/7fab4cd4eb7f499d60fe183607f046484acd6e2d
 pushd clr-build
 %make_install
 popd
@@ -191,4 +191,4 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/lxqt-globalkeys/LICENSE
+/usr/share/package-licenses/lxqt-globalkeys/7fab4cd4eb7f499d60fe183607f046484acd6e2d
