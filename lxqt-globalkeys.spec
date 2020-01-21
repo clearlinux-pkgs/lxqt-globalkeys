@@ -6,11 +6,11 @@
 #
 Name     : lxqt-globalkeys
 Version  : 0.14.3
-Release  : 4
+Release  : 5
 URL      : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.3/lxqt-globalkeys-0.14.3.tar.xz
 Source0  : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.3/lxqt-globalkeys-0.14.3.tar.xz
-Source1 : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.3/lxqt-globalkeys-0.14.3.tar.xz.asc
-Summary  : LXQt daemon and library for global keyboard shortcuts registration.
+Source1  : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.3/lxqt-globalkeys-0.14.3.tar.xz.asc
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: lxqt-globalkeys-bin = %{version}-%{release}
@@ -23,6 +23,7 @@ BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev lib
 BuildRequires : liblxqt-dev
 BuildRequires : lxqt-build-tools
 BuildRequires : qttools-dev
+Patch1: 0001-Fix-building-with-Qt-5.14.patch
 
 %description
 # lxqt-globalkeys
@@ -57,7 +58,6 @@ Requires: lxqt-globalkeys-bin = %{version}-%{release}
 Requires: lxqt-globalkeys-data = %{version}-%{release}
 Provides: lxqt-globalkeys-devel = %{version}-%{release}
 Requires: lxqt-globalkeys = %{version}-%{release}
-Requires: lxqt-globalkeys = %{version}-%{release}
 
 %description dev
 dev components for the lxqt-globalkeys package.
@@ -83,16 +83,17 @@ license components for the lxqt-globalkeys package.
 
 %prep
 %setup -q -n lxqt-globalkeys-0.14.3
+cd %{_builddir}/lxqt-globalkeys-0.14.3
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571283463
+export SOURCE_DATE_EPOCH=1579631084
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -106,7 +107,7 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1571283463
+export SOURCE_DATE_EPOCH=1579631084
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lxqt-globalkeys
 cp %{_builddir}/lxqt-globalkeys-0.14.3/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-globalkeys/7fab4cd4eb7f499d60fe183607f046484acd6e2d
