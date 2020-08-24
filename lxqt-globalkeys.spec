@@ -6,10 +6,10 @@
 #
 Name     : lxqt-globalkeys
 Version  : 0.14.3
-Release  : 5
-URL      : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.3/lxqt-globalkeys-0.14.3.tar.xz
-Source0  : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.3/lxqt-globalkeys-0.14.3.tar.xz
-Source1  : https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.3/lxqt-globalkeys-0.14.3.tar.xz.asc
+Release  : 6
+URL      : https://github.com/lxqt/lxqt-globalkeys/releases/download/0.14.3/lxqt-globalkeys-0.14.3.tar.xz
+Source0  : https://github.com/lxqt/lxqt-globalkeys/releases/download/0.14.3/lxqt-globalkeys-0.14.3.tar.xz
+Source1  : https://github.com/lxqt/lxqt-globalkeys/releases/download/0.14.3/lxqt-globalkeys-0.14.3.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -19,9 +19,12 @@ Requires: lxqt-globalkeys-lib = %{version}-%{release}
 Requires: lxqt-globalkeys-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : kwindowsystem-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
+BuildRequires : liblxqt-data
 BuildRequires : liblxqt-dev
 BuildRequires : lxqt-build-tools
+BuildRequires : qtbase-dev
 BuildRequires : qttools-dev
 Patch1: 0001-Fix-building-with-Qt-5.14.patch
 
@@ -91,7 +94,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1579631084
+export SOURCE_DATE_EPOCH=1598295158
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -99,15 +102,15 @@ export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1579631084
+export SOURCE_DATE_EPOCH=1598295158
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lxqt-globalkeys
 cp %{_builddir}/lxqt-globalkeys-0.14.3/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-globalkeys/7fab4cd4eb7f499d60fe183607f046484acd6e2d
