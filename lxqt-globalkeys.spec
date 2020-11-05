@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBE793007AD22DF7E (tsujan2000@gmail.com)
 #
 Name     : lxqt-globalkeys
-Version  : 0.15.0
-Release  : 8
-URL      : https://github.com/lxqt/lxqt-globalkeys/releases/download/0.15.0/lxqt-globalkeys-0.15.0.tar.xz
-Source0  : https://github.com/lxqt/lxqt-globalkeys/releases/download/0.15.0/lxqt-globalkeys-0.15.0.tar.xz
-Source1  : https://github.com/lxqt/lxqt-globalkeys/releases/download/0.15.0/lxqt-globalkeys-0.15.0.tar.xz.asc
+Version  : 0.16.0
+Release  : 9
+URL      : https://github.com/lxqt/lxqt-globalkeys/releases/download/0.16.0/lxqt-globalkeys-0.16.0.tar.xz
+Source0  : https://github.com/lxqt/lxqt-globalkeys/releases/download/0.16.0/lxqt-globalkeys-0.16.0.tar.xz
+Source1  : https://github.com/lxqt/lxqt-globalkeys/releases/download/0.16.0/lxqt-globalkeys-0.16.0.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -21,8 +21,8 @@ BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : kwindowsystem-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
+BuildRequires : liblxqt-data
 BuildRequires : liblxqt-dev
-BuildRequires : libqtxdg-dev
 BuildRequires : lxqt-build-tools
 BuildRequires : qtbase-dev
 BuildRequires : qttools-dev
@@ -84,15 +84,15 @@ license components for the lxqt-globalkeys package.
 
 
 %prep
-%setup -q -n lxqt-globalkeys-0.15.0
-cd %{_builddir}/lxqt-globalkeys-0.15.0
+%setup -q -n lxqt-globalkeys-0.16.0
+cd %{_builddir}/lxqt-globalkeys-0.16.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1598907944
+export SOURCE_DATE_EPOCH=1604541568
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -108,10 +108,10 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1598907944
+export SOURCE_DATE_EPOCH=1604541568
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lxqt-globalkeys
-cp %{_builddir}/lxqt-globalkeys-0.15.0/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-globalkeys/7fab4cd4eb7f499d60fe183607f046484acd6e2d
+cp %{_builddir}/lxqt-globalkeys-0.16.0/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-globalkeys/7fab4cd4eb7f499d60fe183607f046484acd6e2d
 pushd clr-build
 %make_install
 popd
@@ -146,6 +146,7 @@ popd
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_fr.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_gl.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_he.qm
+/usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_hr.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_hu.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_id.qm
 /usr/share/lxqt/translations/lxqt-config-globalkeyshortcuts/lxqt-config-globalkeyshortcuts_it.qm
@@ -195,9 +196,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/liblxqt-globalkeys-ui.so.0
-/usr/lib64/liblxqt-globalkeys-ui.so.0.15.1
+/usr/lib64/liblxqt-globalkeys-ui.so.0.16.0
 /usr/lib64/liblxqt-globalkeys.so.0
-/usr/lib64/liblxqt-globalkeys.so.0.15.1
+/usr/lib64/liblxqt-globalkeys.so.0.16.0
 
 %files license
 %defattr(0644,root,root,0755)
